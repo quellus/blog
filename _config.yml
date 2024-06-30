@@ -16,6 +16,7 @@ author:
 markdown:       kramdown
 include:
   - _pages
+  - _images
 
 # Assets
 sass:

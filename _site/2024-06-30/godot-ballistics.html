@@ -11,8 +11,8 @@
 <meta property="og:title" content="Ballistic arc when you have a set start and end point in Godot" />
 <meta name="author" content="Quellus" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="I added a new tower to my tower defense game recently that launches missiles instead of firing bullets/lasers like my other towers do. Up until this point, all my bullets work just as a raycast, but I wanted the missiles for this tower to have a ballistic arch. I started searching for the best ways to do this and I believe I found a pretty straightforward solution." />
-<meta property="og:description" content="I added a new tower to my tower defense game recently that launches missiles instead of firing bullets/lasers like my other towers do. Up until this point, all my bullets work just as a raycast, but I wanted the missiles for this tower to have a ballistic arch. I started searching for the best ways to do this and I believe I found a pretty straightforward solution." />
+<meta name="description" content="I added a new tower to my Godot tower defense game recently. Instead of firing bullets or lasers like my other towers, it launches missiles. These missiles required a creative solution because they have a ballistic arc and a set start and end point." />
+<meta property="og:description" content="I added a new tower to my Godot tower defense game recently. Instead of firing bullets or lasers like my other towers, it launches missiles. These missiles required a creative solution because they have a ballistic arc and a set start and end point." />
 <link rel="canonical" href="http://localhost:4000/2024-06-30/godot-ballistics" />
 <meta property="og:url" content="http://localhost:4000/2024-06-30/godot-ballistics" />
 <meta property="og:site_name" content="Quellus" />
@@ -21,7 +21,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Ballistic arc when you have a set start and end point in Godot" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Quellus"},"dateModified":"2024-06-30T00:00:00-06:00","datePublished":"2024-06-30T00:00:00-06:00","description":"I added a new tower to my tower defense game recently that launches missiles instead of firing bullets/lasers like my other towers do. Up until this point, all my bullets work just as a raycast, but I wanted the missiles for this tower to have a ballistic arch. I started searching for the best ways to do this and I believe I found a pretty straightforward solution.","headline":"Ballistic arc when you have a set start and end point in Godot","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2024-06-30/godot-ballistics"},"url":"http://localhost:4000/2024-06-30/godot-ballistics"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Quellus"},"dateModified":"2024-06-30T00:00:00-06:00","datePublished":"2024-06-30T00:00:00-06:00","description":"I added a new tower to my Godot tower defense game recently. Instead of firing bullets or lasers like my other towers, it launches missiles. These missiles required a creative solution because they have a ballistic arc and a set start and end point.","headline":"Ballistic arc when you have a set start and end point in Godot","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2024-06-30/godot-ballistics"},"url":"http://localhost:4000/2024-06-30/godot-ballistics"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -75,15 +75,25 @@
   <h1 class="post-title">Ballistic arc when you have a set start and end point in Godot</h1>
   <div class="post-line"></div>
 
-  <p>I added a new tower to my tower defense game recently that launches missiles instead of firing bullets/lasers like my other towers do. Up until this point, all my bullets work just as a raycast, but I wanted the missiles for this tower to have a ballistic arch. I started searching for the best ways to do this and I believe I found a pretty straightforward solution.</p>
+  <p>I added a new tower to my Godot tower defense game recently. Instead of firing bullets or lasers like my other towers, it launches missiles. These missiles required a creative solution because they have a ballistic arc and a set start and end point.</p>
 
-<p>Initially, I was trying to follow a Reddit post that goes through the trouble of calculating a sine wave, translating the sine wave to fit the environment, then have the bullet follow it. Oof getting that to work was difficult.</p>
+<h2 id="what-didnt-work">What didn’t work</h2>
 
-<p>Eventually, I was introduced to bezier curves. Bezier curves take 4 points. P1 and P2 below denote the start and end of the curve. C1 and C2 are control points dictating how much curvature it will have.</p>
+<h3 id="physics">Physics</h3>
 
-<p><img src="/BezierCurve.png" alt="Bezier Curve" /></p>
+<p>My first step when I was implementing this tower was to Google. Most results I’ve found suggest leaving it up to the physics engine. Make the bullet a rigid body, then give it gravity and an initial velocity. The physics engine will generate simulate a ballistic arc for you.</p>
 
-<p><code class="language-plaintext highlighter-rouge">Vector3</code> has a function called <a href="https://docs.godotengine.org/en/stable/classes/class_vector3.html#class-vector3-method-bezier-interpolate"><code class="language-plaintext highlighter-rouge">bezier_interpolate</code></a>. It takes those 4 points and a unit of time from 0 to 1, then returns a <code class="language-plaintext highlighter-rouge">Vector3</code> representing a position along the bezier curve. Translate the object or set it’s position to the return value, and you’re done.</p>
+<p>This doesn’t work because we have a set start and end point. With the physics approach, the end point of the arc is unpredictable. I could try adjusting the gravity and velocity to get it pretty close to the right end point, but it would be messy.</p>
+
+<h3 id="bezier-interpolation">Bezier interpolation</h3>
+
+<p>THe next idea I had, which I actually implemented, was using Vector3’s <a href="https://docs.godotengine.org/en/stable/classes/class_vector3.html#class-vector3-method-bezier-interpolate"><code class="language-plaintext highlighter-rouge">bezier_interpolate</code></a> function. In short, it generates a bezier curve from the points you supply it, you increment a time variable, and the function returns the position on the curve at that point in time. A bezier curves works with 4 points. P1 and P2 below denote the start and end of the curve. C1 and C2 are control points dictating the amount curvature.</p>
+
+<p><img src="/_images/BezierCurve.png" alt="Bezier Curve" /></p>
+
+<p>The reason this approach doesn’t work for me is that the speed of the missile isn’t constant. A longer curve results in a very fast moving missile, and the a shorter curve results in a very slow moving missile. I tried adjusting the passage of time based on the distance of the curve, but it was kind of messy and very imperfect.</p>
+
+<p>Here’s a snippet of code that may help if you decide to try this approach for yourself.</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var time_left_ratio = (time_left / total_time)
 var p1 = start_pos
@@ -95,7 +105,15 @@ look_at(next_position + Vector3(0.001, 0, 0), Vector3.UP)
 position = next_position
 </code></pre></div></div>
 
-<p>A consideration to this method is that i</p>
+<h2 id="what-did-work">What did work</h2>
+
+<p>My <strong>hopefully</strong> final attempt involved <a href="https://docs.godotengine.org/en/stable/classes/class_path3d.html">Path3D</a>. Everytime the the missile launcher wants to launch a missile, it first generates a Path3D, then spawns the missile as a <a href="https://docs.godotengine.org/en/stable/classes/class_pathfollow3d.html">PathFollow3D</a> to follow the path. I imagine it’s not very efficient to be spawning and deleting nodes so often, but it’s the best solution I’ve found so far.</p>
+
+<p>Here’s how it works:</p>
+
+<p>Path3D works on the same principle as the previous explanation. It’s a bezier curve, but instead of 4 points, it’s generated from 2. The first control point is passed in as the “out” variable of the first point, and the second control point the “in” variable of the second point.</p>
+
+<p>This method also comes with the benefit that the pathfollower automatically rotates itself. I had to rotate the missile manually in the previous solution.</p>
 
 </div>
 
@@ -111,7 +129,7 @@ position = next_position
 
     <footer>
   <span>
-    &copy; <time datetime="2024-06-30 01:27:35 -0600">2024</time> Quellus. Made with Jekyll using the <a href="https://github.com/chesterhow/tale/">Tale</a> theme.
+    &copy; <time datetime="2024-06-30 09:52:03 -0600">2024</time> Quellus. Made with Jekyll using the <a href="https://github.com/chesterhow/tale/">Tale</a> theme.
   </span>
 </footer>
 
