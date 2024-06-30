@@ -5,15 +5,25 @@ tags: Godot, Godot4, Ballistics
 ---
 
 
-I added a new tower to my tower defense game recently that launches missiles instead of firing bullets/lasers like my other towers do. Up until this point, all my bullets work just as a raycast, but I wanted the missiles for this tower to have a ballistic arch. I started searching for the best ways to do this and I believe I found a pretty straightforward solution.
+I added a new tower to my Godot tower defense game recently. Instead of firing bullets or lasers like my other towers, it launches missiles. These missiles required a creative solution because they have a ballistic arc and a set start and end point.
 
-Initially, I was trying to follow a Reddit post that goes through the trouble of calculating a sine wave, translating the sine wave to fit the environment, then have the bullet follow it. Oof getting that to work was difficult.
+## What didn't work
 
-Eventually, I was introduced to bezier curves. Bezier curves take 4 points. P1 and P2 below denote the start and end of the curve. C1 and C2 are control points dictating how much curvature it will have.
+### Physics
 
-![Bezier Curve](/BezierCurve.png)
+My first step when I was implementing this tower was to Google. Most results I've found suggest leaving it up to the physics engine. Make the bullet a rigid body, then give it gravity and an initial velocity. The physics engine will generate simulate a ballistic arc for you.
 
-`Vector3` has a function called [`bezier_interpolate`](https://docs.godotengine.org/en/stable/classes/class_vector3.html#class-vector3-method-bezier-interpolate). It takes those 4 points and a unit of time from 0 to 1, then returns a `Vector3` representing a position along the bezier curve. Translate the object or set it's position to the return value, and you're done.
+This doesn't work because we have a set start and end point. With the physics approach, the end point of the arc is unpredictable. I could try adjusting the gravity and velocity to get it pretty close to the right end point, but it would be messy.
+
+### Bezier interpolation
+
+THe next idea I had, which I actually implemented, was using Vector3's [`bezier_interpolate`](https://docs.godotengine.org/en/stable/classes/class_vector3.html#class-vector3-method-bezier-interpolate) function. In short, it generates a bezier curve from the points you supply it, you increment a time variable, and the function returns the position on the curve at that point in time. A bezier curves works with 4 points. P1 and P2 below denote the start and end of the curve. C1 and C2 are control points dictating the amount curvature.
+
+![Bezier Curve]({{site.baseurl}}/_images/BezierCurve.png)
+
+The reason this approach doesn't work for me is that the speed of the missile isn't constant. A longer curve results in a very fast moving missile, and the a shorter curve results in a very slow moving missile. I tried adjusting the passage of time based on the distance of the curve, but it was kind of messy and very imperfect.
+
+Here's a snippet of code that may help if you decide to try this approach for yourself.
 
 ```
 var time_left_ratio = (time_left / total_time)
@@ -26,4 +36,12 @@ look_at(next_position + Vector3(0.001, 0, 0), Vector3.UP)
 position = next_position
 ```
 
-A consideration to this method is that i
+## What did work
+
+My **hopefully** final attempt involved [Path3D](https://docs.godotengine.org/en/stable/classes/class_path3d.html). Everytime the the missile launcher wants to launch a missile, it first generates a Path3D, then spawns the missile as a [PathFollow3D](https://docs.godotengine.org/en/stable/classes/class_pathfollow3d.html) to follow the path. I imagine it's not very efficient to be spawning and deleting nodes so often, but it's the best solution I've found so far.
+
+Here's how it works:
+
+Path3D works on the same principle as the previous explanation. It's a bezier curve, but instead of 4 points, it's generated from 2. The first control point is passed in as the "out" variable of the first point, and the second control point the "in" variable of the second point.
+
+This method also comes with the benefit that the pathfollower automatically rotates itself. I had to rotate the missile manually in the previous solution.
