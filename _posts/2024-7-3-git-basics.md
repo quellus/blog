@@ -17,14 +17,15 @@ Git is an incredibly powerful tool. I use GitHub for virtually every project. It
  - [Common commands](#common-commands)
  - [Common Workflow](#common-workflow)
 
-
 ## Setting up the repository
 
 The first step is to open GitHub and create a repository. Make sure to add a .gitignore file, GitHub has a template for Godot.
 ![.gitignore Template]({{site.baseurl}}/_images/GitHub-.gitignore-Template.png)
 
 ### Clone the repo
-Dealing with GitHub is much easier if you setup an SSH key first. [Here's how to generate your key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) and [here's how to add it to your GitHub account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account).
+Dealing with GitHub is much easier if you setup an SSH key first. [Here's how to generate your key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) and [how to add it to GitHub](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account).
+
+Setting up an SSH key isn't required. If you don't, you will just have to login in every time you push your commits.
 
 1. Clone your repo. Find the URL here, in your GitHub repository. If you setup SSH use the SSH URL, otherwise use HTTPS.
 ![GitHub Clone URL]({{site.baseurl}}/_images/GitHubCloneURL.png)
@@ -39,11 +40,24 @@ Dealing with GitHub is much easier if you setup an SSH key first. [Here's how to
 | -------- | ------- |
 | `git add <filename>` | Mark file to be committed  |
 | `git clone <repo url>` | Download a repository for GitHub |
-| `git commit` | Commit changes **locally** |
+| `git commit -m "<description>"` | Commit changes **locally** |
 | `git push` | Push committed changes to GitHub |
 | `git status` | See what changes have been made |
 | `git pull` | Get the most recent changes from GitHub |
 
 ## Common Workflow
+Here's the workflow I usually use when working on a project.
 
+```sh
+git clone <url> # Download the repository
+# Open Godot and either create a new project or make edits if project exists
 
+git pull # Makes sure you have all the most recent changes 
+
+git status # Check what changes you made. I try to look out for print() statements and comments I no longer need
+
+git add . # Marks all changed files to be committed
+git commit -m "Describe what you changed in this commit" # Creates a commit. Your commit history is essentially a changelog of every change you've made. Creating a commit adds an entry into that "changelog"
+
+git push origin HEAD # Pushes the commit. Commits are saved locally, and will not be uploaded to GitHub until you push them
+```
