@@ -1,15 +1,29 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-07-10T01:06:01-06:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Quellus</title><subtitle>Learning Godot and teaching as I do</subtitle><author><name>Quellus</name><email>quellus7@gmail.com</email></author><entry><title type="html">Everything you need to know getting started with GitHub and Godot</title><link href="http://localhost:4000/2024-07-03/git-basics" rel="alternate" type="text/html" title="Everything you need to know getting started with GitHub and Godot" /><published>2024-07-03T00:00:00-06:00</published><updated>2024-07-03T00:00:00-06:00</updated><id>http://localhost:4000/2024-07-03/git-basics</id><content type="html" xml:base="http://localhost:4000/2024-07-03/git-basics"><![CDATA[<h2 id="introduction">Introduction</h2>
-<p>If you’re brand new to Git/GitHub and the command line scares you, I strongly recommend using the GitHub Desktop app. It’s a GUI app that makes getting started with Git much easier to use. I made a <a href="https://www.youtube.com/watch?v=8UrZGJQq5cE&amp;t=2s">video tutorial here</a>.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-07-11T13:55:50-06:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Quellus</title><subtitle>Learning Godot and teaching as I do</subtitle><author><name>Quellus</name><email>quellus7@gmail.com</email></author><entry><title type="html">Everything you need to know to get started with GitHub and Godot</title><link href="http://localhost:4000/2024-07-03/git-basics" rel="alternate" type="text/html" title="Everything you need to know to get started with GitHub and Godot" /><published>2024-07-03T00:00:00-06:00</published><updated>2024-07-03T00:00:00-06:00</updated><id>http://localhost:4000/2024-07-03/git-basics</id><content type="html" xml:base="http://localhost:4000/2024-07-03/git-basics"><![CDATA[<h2 id="introduction">Introduction</h2>
+<p>This post assumes you’re already somewhat comfortable with the command line. Git itself is pretty complicated, and I aim to show you just the basic commands you will need upload your game to GitHub and track your changes. If you’re not comfortable with the command line, I strongly recommend using the GitHub Desktop app instead. I made a <a href="https://www.youtube.com/watch?v=8UrZGJQq5cE&amp;t=2s">video tutorial here</a> covering how to use GitHub desktop without touching the command line.</p>
 
 <h3 id="why-use-git">Why use git?</h3>
-<p>Git is an incredibly powerful tool. I use git for just about every coding project I work on. It keeps a history of every change I make allowing me to easily rollback if I change my mind. I can start a task, save my changes in a branch, then work on something else without losing those changes. The best part of git, though, is collaboration. It allows you to easily share your code with eachother, merge your changes together, and even submit your changes for approval by your teammates before they get officially merged in.</p>
+<p>Git is an incredibly powerful tool. I use git for just about every coding project even when I’m working alone.</p>
 
-<p>## Table of contents:</p>
+<p>Here are the reasons to use Git:</p>
+<ol>
+  <li>With GitHub, your code is stored in the cloud keeping a backup of your work and making it easy to transfer your progress to another computer.</li>
+  <li>Git keeps a history of every change you make allowing you to easily rollback if anything goes wrong or you change your mind.</li>
+  <li>Branching (not covered in this post) allows you to start on a new feature or bug fix, save your work, then work on something else without losing your progress.</li>
+  <li>Git’s biggest strength is collaboration. It allows you to easily share your code with eachother, merge your changes together, and even submit your changes for approval by your teammates before they get officially merged in.</li>
+</ol>
+
+<h2 id="table-of-contents">Table of contents:</h2>
 <ul>
   <li><a href="#introduction">Introduction</a></li>
-  <li><a href="#setup">Setup</a></li>
+  <li><a href="#setup">Setup</a>
+    <ul>
+      <li><a href="#gitignore-file">gitignore File</a></li>
+      <li><a href="#setup-ssh">setup SSH</a></li>
+      <li><a href="#clone-the-repo">Clone the Repo</a></li>
+    </ul>
+  </li>
   <li><a href="#common-workflow">Common Workflow</a></li>
-  <li><a href="#common-commands">Common commands</a></li>
+  <li><a href="#the-important-commands">The Important Commands</a></li>
 </ul>
 
 <h2 id="setup">Setup</h2>
@@ -50,7 +64,7 @@ mono_crash.*.json
 
 <p><strong>Warning</strong> make sure you use the .pub file! The other file is your private key and you definitely don’t want that being shared!</p>
 
-<h3 id="clone-the-repo">Clone the repo</h3>
+<h3 id="clone-the-repo">Clone The Repo</h3>
 <ol>
   <li>
     <p>Clone your repo. If you setup an SSH key, use the SSH URL you will find here
@@ -127,7 +141,7 @@ git push origin HEAD <span class="c"># Pushes the commit. Commits are saved loca
       <td>Get the most recent changes from GitHub</td>
     </tr>
   </tbody>
-</table>]]></content><author><name>Quellus</name><email>quellus7@gmail.com</email></author><category term="Godot," /><category term="Godot4," /><category term="Git," /><category term="GitHub," /><category term="Tutorial" /><summary type="html"><![CDATA[Introduction If you’re brand new to Git/GitHub and the command line scares you, I strongly recommend using the GitHub Desktop app. It’s a GUI app that makes getting started with Git much easier to use. I made a video tutorial here.]]></summary></entry><entry><title type="html">Ballistic arc when you have a set start and end point in Godot</title><link href="http://localhost:4000/2024-06-30/godot-ballistics" rel="alternate" type="text/html" title="Ballistic arc when you have a set start and end point in Godot" /><published>2024-06-30T00:00:00-06:00</published><updated>2024-06-30T00:00:00-06:00</updated><id>http://localhost:4000/2024-06-30/godot-ballistics</id><content type="html" xml:base="http://localhost:4000/2024-06-30/godot-ballistics"><![CDATA[<p>I added a new tower to my Godot tower defense game recently. Instead of firing bullets or lasers like my other towers, it launches missiles. These missiles required a creative solution because they have a ballistic arc and a set start and end point.</p>
+</table>]]></content><author><name>Quellus</name><email>quellus7@gmail.com</email></author><category term="Godot," /><category term="Godot4," /><category term="Git," /><category term="GitHub," /><category term="Tutorial" /><summary type="html"><![CDATA[Introduction This post assumes you’re already somewhat comfortable with the command line. Git itself is pretty complicated, and I aim to show you just the basic commands you will need upload your game to GitHub and track your changes. If you’re not comfortable with the command line, I strongly recommend using the GitHub Desktop app instead. I made a video tutorial here covering how to use GitHub desktop without touching the command line.]]></summary></entry><entry><title type="html">Ballistic arc when you have a set start and end point in Godot</title><link href="http://localhost:4000/2024-06-30/godot-ballistics" rel="alternate" type="text/html" title="Ballistic arc when you have a set start and end point in Godot" /><published>2024-06-30T00:00:00-06:00</published><updated>2024-06-30T00:00:00-06:00</updated><id>http://localhost:4000/2024-06-30/godot-ballistics</id><content type="html" xml:base="http://localhost:4000/2024-06-30/godot-ballistics"><![CDATA[<p>I added a new tower to my Godot tower defense game recently. Instead of firing bullets or lasers like my other towers, it launches missiles. These missiles required a creative solution because they have a ballistic arc and a set start and end point.</p>
 
 <h2 id="what-didnt-work">What didn’t work</h2>
 

@@ -1,21 +1,30 @@
 ---
 layout: post
-title: "Everything you need to know getting started with GitHub and Godot"
+title: "Everything you need to know to get started with GitHub and Godot"
 tags: Godot, Godot4, Git, GitHub, Tutorial
 ---
 
 ## Introduction
-If you're brand new to Git/GitHub and the command line scares you, I strongly recommend using the GitHub Desktop app. It's a GUI app that makes getting started with Git much easier to use. I made a [video tutorial here](https://www.youtube.com/watch?v=8UrZGJQq5cE&t=2s).
+This post assumes you're already somewhat comfortable with the command line. Git itself is pretty complicated, and I aim to show you just the basic commands you will need upload your game to GitHub and track your changes. If you're not comfortable with the command line, I strongly recommend using the GitHub Desktop app instead. I made a [video tutorial here](https://www.youtube.com/watch?v=8UrZGJQq5cE&t=2s) covering how to use GitHub desktop without touching the command line.
 
 ### Why use git?
-Git is an incredibly powerful tool. I use git for just about every coding project I work on. It keeps a history of every change I make allowing me to easily rollback if I change my mind. I can start a task, save my changes in a branch, then work on something else without losing those changes. The best part of git, though, is collaboration. It allows you to easily share your code with eachother, merge your changes together, and even submit your changes for approval by your teammates before they get officially merged in.
+Git is an incredibly powerful tool. I use git for just about every coding project even when I'm working alone.
+
+Here are the reasons to use Git:
+1. With GitHub, your code is stored in the cloud keeping a backup of your work and making it easy to transfer your progress to another computer.
+2. Git keeps a history of every change you make allowing you to easily rollback if anything goes wrong or you change your mind.
+3. Branching (not covered in this post) allows you to start on a new feature or bug fix, save your work, then work on something else without losing your progress.
+4. Git's biggest strength is collaboration. It allows you to easily share your code with eachother, merge your changes together, and even submit your changes for approval by your teammates before they get officially merged in.
 
 
- ## Table of contents:
+## Table of contents:
  - [Introduction](#introduction)
  - [Setup](#setup)
+    - [gitignore File](#gitignore-file)
+    - [setup SSH](#setup-ssh)
+    - [Clone the Repo](#clone-the-repo)
  - [Common Workflow](#common-workflow)
- - [Common commands](#common-commands)
+ - [The Important Commands](#the-important-commands)
 
 ## Setup
 The first step, if you haven't already, is to make a GitHub account. These instructions were designed with GitHub in mind, but will still be useful for git hosts such as BitBucket, or Gitlab.
@@ -56,7 +65,7 @@ Dealing with GitHub is much easier if you setup an SSH key first. It's not requi
 
 **Warning** make sure you use the .pub file! The other file is your private key and you definitely don't want that being shared!
 
-### Clone the repo
+### Clone The Repo
 1. Clone your repo. If you setup an SSH key, use the SSH URL you will find here
 ![GitHub Clone URL]({{site.baseurl}}/_images/GitHubCloneURL.png)
  If you did not setup an SSH key, use HTTPS.

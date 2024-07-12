@@ -6,22 +6,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Everything you need to know getting started with GitHub and Godot | Quellus</title>
+<title>Everything you need to know to get started with GitHub and Godot | Quellus</title>
 <meta name="generator" content="Jekyll v4.3.3" />
-<meta property="og:title" content="Everything you need to know getting started with GitHub and Godot" />
+<meta property="og:title" content="Everything you need to know to get started with GitHub and Godot" />
 <meta name="author" content="Quellus" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Introduction If you’re brand new to Git/GitHub and the command line scares you, I strongly recommend using the GitHub Desktop app. It’s a GUI app that makes getting started with Git much easier to use. I made a video tutorial here." />
-<meta property="og:description" content="Introduction If you’re brand new to Git/GitHub and the command line scares you, I strongly recommend using the GitHub Desktop app. It’s a GUI app that makes getting started with Git much easier to use. I made a video tutorial here." />
+<meta name="description" content="Introduction This post assumes you’re already somewhat comfortable with the command line. Git itself is pretty complicated, and I aim to show you just the basic commands you will need upload your game to GitHub and track your changes. If you’re not comfortable with the command line, I strongly recommend using the GitHub Desktop app instead. I made a video tutorial here covering how to use GitHub desktop without touching the command line." />
+<meta property="og:description" content="Introduction This post assumes you’re already somewhat comfortable with the command line. Git itself is pretty complicated, and I aim to show you just the basic commands you will need upload your game to GitHub and track your changes. If you’re not comfortable with the command line, I strongly recommend using the GitHub Desktop app instead. I made a video tutorial here covering how to use GitHub desktop without touching the command line." />
 <link rel="canonical" href="http://localhost:4000/2024-07-03/git-basics" />
 <meta property="og:url" content="http://localhost:4000/2024-07-03/git-basics" />
 <meta property="og:site_name" content="Quellus" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2024-07-03T00:00:00-06:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Everything you need to know getting started with GitHub and Godot" />
+<meta property="twitter:title" content="Everything you need to know to get started with GitHub and Godot" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Quellus"},"dateModified":"2024-07-03T00:00:00-06:00","datePublished":"2024-07-03T00:00:00-06:00","description":"Introduction If you’re brand new to Git/GitHub and the command line scares you, I strongly recommend using the GitHub Desktop app. It’s a GUI app that makes getting started with Git much easier to use. I made a video tutorial here.","headline":"Everything you need to know getting started with GitHub and Godot","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2024-07-03/git-basics"},"url":"http://localhost:4000/2024-07-03/git-basics"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Quellus"},"dateModified":"2024-07-03T00:00:00-06:00","datePublished":"2024-07-03T00:00:00-06:00","description":"Introduction This post assumes you’re already somewhat comfortable with the command line. Git itself is pretty complicated, and I aim to show you just the basic commands you will need upload your game to GitHub and track your changes. If you’re not comfortable with the command line, I strongly recommend using the GitHub Desktop app instead. I made a video tutorial here covering how to use GitHub desktop without touching the command line.","headline":"Everything you need to know to get started with GitHub and Godot","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2024-07-03/git-basics"},"url":"http://localhost:4000/2024-07-03/git-basics"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -72,21 +72,35 @@
     
   </div>
 
-  <h1 class="post-title">Everything you need to know getting started with GitHub and Godot</h1>
+  <h1 class="post-title">Everything you need to know to get started with GitHub and Godot</h1>
   <div class="post-line"></div>
 
   <h2 id="introduction">Introduction</h2>
-<p>If you’re brand new to Git/GitHub and the command line scares you, I strongly recommend using the GitHub Desktop app. It’s a GUI app that makes getting started with Git much easier to use. I made a <a href="https://www.youtube.com/watch?v=8UrZGJQq5cE&amp;t=2s">video tutorial here</a>.</p>
+<p>This post assumes you’re already somewhat comfortable with the command line. Git itself is pretty complicated, and I aim to show you just the basic commands you will need upload your game to GitHub and track your changes. If you’re not comfortable with the command line, I strongly recommend using the GitHub Desktop app instead. I made a <a href="https://www.youtube.com/watch?v=8UrZGJQq5cE&amp;t=2s">video tutorial here</a> covering how to use GitHub desktop without touching the command line.</p>
 
 <h3 id="why-use-git">Why use git?</h3>
-<p>Git is an incredibly powerful tool. I use git for just about every coding project I work on. It keeps a history of every change I make allowing me to easily rollback if I change my mind. I can start a task, save my changes in a branch, then work on something else without losing those changes. The best part of git, though, is collaboration. It allows you to easily share your code with eachother, merge your changes together, and even submit your changes for approval by your teammates before they get officially merged in.</p>
+<p>Git is an incredibly powerful tool. I use git for just about every coding project even when I’m working alone.</p>
 
-<p>## Table of contents:</p>
+<p>Here are the reasons to use Git:</p>
+<ol>
+  <li>With GitHub, your code is stored in the cloud keeping a backup of your work and making it easy to transfer your progress to another computer.</li>
+  <li>Git keeps a history of every change you make allowing you to easily rollback if anything goes wrong or you change your mind.</li>
+  <li>Branching (not covered in this post) allows you to start on a new feature or bug fix, save your work, then work on something else without losing your progress.</li>
+  <li>Git’s biggest strength is collaboration. It allows you to easily share your code with eachother, merge your changes together, and even submit your changes for approval by your teammates before they get officially merged in.</li>
+</ol>
+
+<h2 id="table-of-contents">Table of contents:</h2>
 <ul>
   <li><a href="#introduction">Introduction</a></li>
-  <li><a href="#setup">Setup</a></li>
+  <li><a href="#setup">Setup</a>
+    <ul>
+      <li><a href="#gitignore-file">gitignore File</a></li>
+      <li><a href="#setup-ssh">setup SSH</a></li>
+      <li><a href="#clone-the-repo">Clone the Repo</a></li>
+    </ul>
+  </li>
   <li><a href="#common-workflow">Common Workflow</a></li>
-  <li><a href="#common-commands">Common commands</a></li>
+  <li><a href="#the-important-commands">The Important Commands</a></li>
 </ul>
 
 <h2 id="setup">Setup</h2>
@@ -127,7 +141,7 @@ mono_crash.*.json
 
 <p><strong>Warning</strong> make sure you use the .pub file! The other file is your private key and you definitely don’t want that being shared!</p>
 
-<h3 id="clone-the-repo">Clone the repo</h3>
+<h3 id="clone-the-repo">Clone The Repo</h3>
 <ol>
   <li>
     <p>Clone your repo. If you setup an SSH key, use the SSH URL you will find here
@@ -223,7 +237,7 @@ git push origin HEAD <span class="c"># Pushes the commit. Commits are saved loca
 
     <footer>
   <span>
-    &copy; <time datetime="2024-07-10 01:06:01 -0600">2024</time> Quellus. Made with Jekyll using the <a href="https://github.com/chesterhow/tale/">Tale</a> theme.
+    &copy; <time datetime="2024-07-11 13:55:50 -0600">2024</time> Quellus. Made with Jekyll using the <a href="https://github.com/chesterhow/tale/">Tale</a> theme.
   </span>
 </footer>
 

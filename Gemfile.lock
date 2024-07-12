@@ -18,8 +18,10 @@ GEM
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0)
     eventmachine (1.2.7)
+    ffi (1.17.0-x64-mingw-ucrt)
     ffi (1.17.0-x86_64-linux-gnu)
     forwardable-extended (2.6.0)
+    google-protobuf (3.25.3-x64-mingw-ucrt)
     google-protobuf (3.25.3-x86_64-linux)
     http_parser.rb (0.8.0)
     i18n (1.14.5)
@@ -69,6 +71,8 @@ GEM
       strscan
     rouge (4.3.0)
     safe_yaml (1.0.5)
+    sass-embedded (1.77.5-x64-mingw-ucrt)
+      google-protobuf (>= 3.25, < 5.0)
     sass-embedded (1.77.5-x86_64-linux-gnu)
       google-protobuf (>= 3.25, < 5.0)
     strscan (3.1.0)
@@ -78,31 +82,9 @@ GEM
     webrick (1.8.1)
 
 PLATFORMS
-  aarch64-linux
-  aarch64-linux-android
-  aarch64-linux-musl
-  aarch64-mingw-ucrt
-  arm-linux-androideabi
-  arm-linux-gnu
-  arm-linux-gnueabihf
-  arm-linux-musl
-  arm-linux-musleabihf
-  arm64-darwin
-  riscv64-linux-android
-  riscv64-linux-gnu
-  riscv64-linux-musl
-  x86-cygwin
-  x86-linux
-  x86-linux-android
-  x86-linux-gnu
-  x86-linux-musl
-  x86-mingw-ucrt
-  x86_64-cygwin
-  x86_64-darwin
+  x64-mingw-ucrt
   x86_64-linux
-  x86_64-linux-android
   x86_64-linux-gnu
-  x86_64-linux-musl
 
 DEPENDENCIES
   Quellus!
