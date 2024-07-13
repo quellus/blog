@@ -11,17 +11,17 @@
 <meta property="og:title" content="Everything you need to know to get started with GitHub and Godot" />
 <meta name="author" content="Quellus" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Introduction This post assumes you’re already somewhat comfortable with the command line. Git itself is pretty complicated, and I aim to show you just the basic commands you will need upload your game to GitHub and track your changes. If you’re not comfortable with the command line, I strongly recommend using the GitHub Desktop app instead. I made a video tutorial here covering how to use GitHub desktop without touching the command line." />
-<meta property="og:description" content="Introduction This post assumes you’re already somewhat comfortable with the command line. Git itself is pretty complicated, and I aim to show you just the basic commands you will need upload your game to GitHub and track your changes. If you’re not comfortable with the command line, I strongly recommend using the GitHub Desktop app instead. I made a video tutorial here covering how to use GitHub desktop without touching the command line." />
-<link rel="canonical" href="http://localhost:4000/2024-07-03/git-basics" />
-<meta property="og:url" content="http://localhost:4000/2024-07-03/git-basics" />
+<meta name="description" content="Introduction This post assumes you’re already somewhat comfortable with the command line. Git itself is pretty complicated. My aim is only to teach you the commands you need to know to backup your game to GitHub and track your changes. If you’re not comfortable with the command line, I strongly recommend using the GitHub Desktop app instead. I made a video tutorial here covering how to use GitHub desktop without touching the command line." />
+<meta property="og:description" content="Introduction This post assumes you’re already somewhat comfortable with the command line. Git itself is pretty complicated. My aim is only to teach you the commands you need to know to backup your game to GitHub and track your changes. If you’re not comfortable with the command line, I strongly recommend using the GitHub Desktop app instead. I made a video tutorial here covering how to use GitHub desktop without touching the command line." />
+<link rel="canonical" href="http://localhost:4000/2024-07-12/git-basics" />
+<meta property="og:url" content="http://localhost:4000/2024-07-12/git-basics" />
 <meta property="og:site_name" content="Quellus" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2024-07-03T00:00:00-06:00" />
+<meta property="article:published_time" content="2024-07-12T00:00:00-06:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Everything you need to know to get started with GitHub and Godot" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Quellus"},"dateModified":"2024-07-03T00:00:00-06:00","datePublished":"2024-07-03T00:00:00-06:00","description":"Introduction This post assumes you’re already somewhat comfortable with the command line. Git itself is pretty complicated, and I aim to show you just the basic commands you will need upload your game to GitHub and track your changes. If you’re not comfortable with the command line, I strongly recommend using the GitHub Desktop app instead. I made a video tutorial here covering how to use GitHub desktop without touching the command line.","headline":"Everything you need to know to get started with GitHub and Godot","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2024-07-03/git-basics"},"url":"http://localhost:4000/2024-07-03/git-basics"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Quellus"},"dateModified":"2024-07-12T00:00:00-06:00","datePublished":"2024-07-12T00:00:00-06:00","description":"Introduction This post assumes you’re already somewhat comfortable with the command line. Git itself is pretty complicated. My aim is only to teach you the commands you need to know to backup your game to GitHub and track your changes. If you’re not comfortable with the command line, I strongly recommend using the GitHub Desktop app instead. I made a video tutorial here covering how to use GitHub desktop without touching the command line.","headline":"Everything you need to know to get started with GitHub and Godot","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2024-07-12/git-basics"},"url":"http://localhost:4000/2024-07-12/git-basics"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -68,7 +68,7 @@
 
     
       <br>
-      <span>on&nbsp;</span><time datetime="2024-07-03 00:00:00 -0600">July 03, 2024</time>
+      <span>on&nbsp;</span><time datetime="2024-07-12 00:00:00 -0600">July 12, 2024</time>
     
   </div>
 
@@ -76,17 +76,17 @@
   <div class="post-line"></div>
 
   <h2 id="introduction">Introduction</h2>
-<p>This post assumes you’re already somewhat comfortable with the command line. Git itself is pretty complicated, and I aim to show you just the basic commands you will need upload your game to GitHub and track your changes. If you’re not comfortable with the command line, I strongly recommend using the GitHub Desktop app instead. I made a <a href="https://www.youtube.com/watch?v=8UrZGJQq5cE&amp;t=2s">video tutorial here</a> covering how to use GitHub desktop without touching the command line.</p>
+<p>This post assumes you’re already somewhat comfortable with the command line. Git itself is pretty complicated. My aim is only to teach you the commands you need to know to backup your game to GitHub and track your changes. If you’re not comfortable with the command line, I strongly recommend using the GitHub Desktop app instead. I made a <a href="https://www.youtube.com/watch?v=8UrZGJQq5cE&amp;t=2s">video tutorial here</a> covering how to use GitHub desktop without touching the command line.</p>
 
 <h3 id="why-use-git">Why use git?</h3>
 <p>Git is an incredibly powerful tool. I use git for just about every coding project even when I’m working alone.</p>
 
 <p>Here are the reasons to use Git:</p>
 <ol>
-  <li>With GitHub, your code is stored in the cloud keeping a backup of your work and making it easy to transfer your progress to another computer.</li>
-  <li>Git keeps a history of every change you make allowing you to easily rollback if anything goes wrong or you change your mind.</li>
-  <li>Branching (not covered in this post) allows you to start on a new feature or bug fix, save your work, then work on something else without losing your progress.</li>
-  <li>Git’s biggest strength is collaboration. It allows you to easily share your code with eachother, merge your changes together, and even submit your changes for approval by your teammates before they get officially merged in.</li>
+  <li>With GitHub, your code is stored in the cloud keeping a backup of your work and making it easy to move your progress between computers or people.</li>
+  <li>Git keeps a history of every change you make allowing you to easily rollback if you change your mind or look back at old ways you solved a problem.</li>
+  <li>Branching (not covered in this post) allows you to work on multiple separate things at the same time and track your progress along the way.</li>
+  <li>Git’s biggest strength is collaboration. It allows you to easily share your progress with eachother, and merge your changes together if you both made changes to the same files.</li>
 </ol>
 
 <h2 id="table-of-contents">Table of contents:</h2>
@@ -101,21 +101,26 @@
   </li>
   <li><a href="#common-workflow">Common Workflow</a></li>
   <li><a href="#the-important-commands">The Important Commands</a></li>
+  <li><a href="#what-to-do-if-something-goes-wrong">What to do if something goes wrong</a></li>
 </ul>
 
 <h2 id="setup">Setup</h2>
-<p>The first step, if you haven’t already, is to make a GitHub account. These instructions were designed with GitHub in mind, but will still be useful for git hosts such as BitBucket, or Gitlab.</p>
-
-<p>Next, log in to your account and create a repository.</p>
+<p>These instructions were designed with GitHub in mind, but will still be useful for git hosts such as BitBucket, or Gitlab.</p>
+<ol>
+  <li>If you haven’t already, make a GitHub account</li>
+  <li>Log in to your account in the browser</li>
+  <li>Create an empty repository</li>
+  <li>Be sure to add the Godot “.gitignore” template when you’re making the reposity</li>
+</ol>
 
 <h3 id="gitignore-file">gitignore File</h3>
-<p>Every time you run your game, Godot will create temporary files you don’t need. A .gitignore file is important as it makes sure those temporary files won’t be uploaded with your code.</p>
+<p>Every time you run your game, Godot will create temporary files you don’t need to publish to the repository. The .gitignore lists all of those generated files and directories. As a result, git will completely ignore them.</p>
 
-<p>If you’re on GitHub, there’s an option to add a gitignore from a template. GitHub has a pretty good template you can select from the dropdown menu.</p>
+<p>While you’re creating your repository, you should see a dropdown menu to “Add .gitgnore” (see photo below). GitHub has a built in template for the Godot and I suggest starting with it.</p>
 
 <p><img src="/_images/GitHub-.gitignore-Template.png" alt=".gitignore Template" /></p>
 
-<p>If you’re not on GitHub, make a .gitignore file and populate it with this:</p>
+<p>If you weren’t able to start with a template, make a <code class="language-plaintext highlighter-rouge">.gitignore</code> file in the root of your repository. Here are the contents:</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Godot 4+ specific ignores
 .godot/
 
@@ -135,25 +140,21 @@ mono_crash.*.json
 </code></pre></div></div>
 
 <h3 id="setup-ssh">Setup SSH</h3>
-<p>Dealing with GitHub is much easier if you setup an SSH key first. It’s not required, but if you don’t, you will have to login to your account every time you want to upload or download changes.</p>
+<p>Dealing with GitHub is much easier if you setup an SSH key first. It’s not required, but if you don’t, you will have to authenticate every time you upload or download changes from GitHub.</p>
 
 <p><a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">Here’s how to generate your key</a> and <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account">how to add it to GitHub</a>.</p>
 
-<p><strong>Warning</strong> make sure you use the .pub file! The other file is your private key and you definitely don’t want that being shared!</p>
+<p><strong>Warning!</strong> when uploading your key to GitHub, make sure you use the .pub file! The other file is your private key and you definitely don’t want that being shared!</p>
 
 <h3 id="clone-the-repo">Clone The Repo</h3>
 <ol>
   <li>
-    <p>Clone your repo. If you setup an SSH key, use the SSH URL you will find here
+    <p>If you setup an SSH key, use the SSH URL you will find here
 <img src="/_images/GitHubCloneURL.png" alt="GitHub Clone URL" />
  If you did not setup an SSH key, use HTTPS.</p>
-
-    <ul>
-      <li>Clone the repo by entering the following command with the URL <code class="language-plaintext highlighter-rouge">git clone &lt;URL&gt;</code></li>
-    </ul>
   </li>
-  <li>
-    <p>Create or copy a Godot project</p>
+  <li>Clone the repo by entering the following command with the URL <code class="language-plaintext highlighter-rouge">git clone &lt;URL&gt;</code></li>
+  <li>Create or copy a Godot project
     <ul>
       <li>If you already have a Godot project, cp the contents of the project into the directory created as a result of the clone command.</li>
       <li>If this is a new project, open Godot and create a new project in the new directory.</li>
@@ -170,7 +171,7 @@ mono_crash.*.json
 
 git status <span class="c"># Verify what files you changed</span>
 
-git diff <span class="c"># This will open a text editor showing every line you've changed. Lines you've added show in green and lines you've deleted show in red</span>
+git diff <span class="c"># This will open a text editor showing every line you've changed. I take this time to look for comments or print statements I meant to delete later.</span>
 
 git add <span class="nb">.</span> <span class="c"># Stages all changed files in the current directory to be commited</span>
 git commit <span class="nt">-m</span> <span class="s2">"Describe what you changed in this commit"</span> <span class="c"># Creates a commit. Your commit history is essentially a changelog of every change you've made. Best practice is to write a clear, but short description of what you changed.</span>
@@ -179,7 +180,7 @@ git push origin HEAD <span class="c"># Pushes the commit. Commits are saved loca
 </code></pre></div></div>
 
 <h2 id="the-important-commands">The Important Commands</h2>
-<p>Git has a <strong>lot</strong> of commands, and it would be ridiculous to try to memorize every one. To get started, here’s the only commands you need to remember.</p>
+<p>These are the only commands you really need to get started. If you open the manpage for git, you’ll quickly discover that there’s an overwhelming amount. Stick to these for now and you should be okay.</p>
 
 <table>
   <thead>
@@ -195,7 +196,7 @@ git push origin HEAD <span class="c"># Pushes the commit. Commits are saved loca
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">git status</code></td>
-      <td>See what changes have been made</td>
+      <td>See which files have been changed</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">git diff</code></td>
@@ -203,7 +204,7 @@ git push origin HEAD <span class="c"># Pushes the commit. Commits are saved loca
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">git add &lt;filename&gt;</code></td>
-      <td>Mark file to be committed</td>
+      <td>Mark file(s) to be committed</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">git commit -m "&lt;description&gt;"</code></td>
@@ -220,6 +221,12 @@ git push origin HEAD <span class="c"># Pushes the commit. Commits are saved loca
   </tbody>
 </table>
 
+<h2 id="what-to-do-if-something-goes-wrong">What to do if something goes wrong</h2>
+<p><a href="https://dangitgit.com/">dangitgit.com</a> is one of the most useful websites I’ve found. I strongly recommend bookmarking it.</p>
+
+<p>Here you will find some common issues and mistakes, and how to fix them.</p>
+
+<p>Also feel free to join my livestreams <a href="https://twitch.tv/quellusdev">twitch.tv/quellusdev</a> we will happily do the best we can to help you live!</p>
 
 </div>
 
@@ -237,7 +244,7 @@ git push origin HEAD <span class="c"># Pushes the commit. Commits are saved loca
 
     <footer>
   <span>
-    &copy; <time datetime="2024-07-11 13:55:50 -0600">2024</time> Quellus. Made with Jekyll using the <a href="https://github.com/chesterhow/tale/">Tale</a> theme.
+    &copy; <time datetime="2024-07-12 19:57:41 -0600">2024</time> Quellus. Made with Jekyll using the <a href="https://github.com/chesterhow/tale/">Tale</a> theme.
   </span>
 </footer>
 
