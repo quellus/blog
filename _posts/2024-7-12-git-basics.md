@@ -39,7 +39,7 @@ Every time you run your game, Godot will create temporary files you don't need t
 
 While you're creating your repository, you should see a dropdown menu to "Add .gitgnore" (see photo below). GitHub has a built in template for the Godot and I suggest starting with it.
 
-![.gitignore Template]({{site.baseurl}}/_images/GitHub-.gitignore-Template.png)
+![.gitignore Template](/assets/img/GitHubGitignoreTemplate.png)
 
 If you weren't able to start with a template, make a `.gitignore` file in the root of your repository. Here are the contents:
 ```
@@ -70,7 +70,8 @@ Dealing with GitHub is much easier if you setup an SSH key first. It's not requi
 
 ### Clone The Repo
 1. If you setup an SSH key, use the SSH URL you will find here
-![GitHub Clone URL]({{site.baseurl}}/_images/GitHubCloneURL.png)
+![GitHub Clone URL](/assets/img/GitHubCloneURL.png)
+
  If you did not setup an SSH key, use HTTPS.
 
 2. Clone the repo by entering the following command with the URL `git clone <URL>`
