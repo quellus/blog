@@ -6,6 +6,13 @@ tags: Godot, Godot4, Tutorial
 
 If you want to make a top-down game. Whether it’s a survivors-like, shooter, or RPG. This tutorial will be a good starting point. Well go over controlling your character, spawning enemies that chase your character, and taking damage when an enemy touches you.
 
+## Table of contents:
+ - [Setup](#setup)
+ - [Creating a basic character controller](#creating-a-basic-character-controller)
+ - [Creating the enemy](#creating-the-enemy)
+ - [Creating an enemy spawner](#creating-an-enemy-spawner)
+ - [Ending the game when an enemy touches the player](#ending-the-game-when-an-enemy-touches-the-player)
+
 # Setup
 1. Create a new Godot project
 2. Create a 2D scene
