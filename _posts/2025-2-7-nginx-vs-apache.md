@@ -9,7 +9,7 @@ tags: Blog, homelab security, thermostat, knowledgedump, adventure
 
 In a recent blog post, I shared everything I am learning while I add HTTPS to the self-hosted servers in my home. Since that post, I have tested quite a few different webservers and learned a lot more about dealing with self-signed certificates on a local network. I wanted to share my findings.
 
-So far, I have tested Apache, Nginx, and Caddy. I can't speak to how well they handle traffic and security out in the wild. The servers I am hosting pretty much just have one user and are not accessible to the outside world. I will be sharing the experience of setting up these servers, enabling HTTPS via self-signed certificates, and using the server via local network.
+So far, I have tested Apache, Nginx, and Caddy. This post is from a hobbyist homelab perspective. I can only speak about the experience of configuring and using these servers with a use-case of having basically one user over an local area network. I cannot provide any insights on how secure or reliable these servers will be out in the wild.
 
 ## Apache
 
@@ -20,17 +20,21 @@ Back when I started making my DIY thermostat project and decided the best way to
 
 That's it. It's actually just that easy.
 
-Adding HTTPS also wasn't very difficult. Once I had worked out how to use openssl to generate the certificate and key, I just had to create a simple config to tell Apache I wanted it to server HTTPS and where to find the cert files. Easy.
+Adding HTTPS also wasn't very difficult. Once I had worked out how to use openssl to generate the certificate and key, I just had to create a simple config to tell Apache where the cert and key files are. Easy.
+
+Eventually, I learned about reverse proxies. The brains of my DIY Thermostat project uses FastAPI, and when I first started using Apache, FastAPI had full HTTPS support. I recently updated to the latest version of FastAPI to discover that HTTPS is no longer supported, and if you want to add encryption, a reverse proxy is the recommended solution.
 
 ## Nginx
 
-Pretty quickly in my adventure to encrypt all the things, I learned that I needed a reverse proxy. The server that allows my thermostat to actually do its job uses FastAPI. FastAPI supported HTTPS once upon a time, but support was dropped in favor of using reverse proxies (which are likely to be more secure anyway). I was using Apache before. As far as I can tell, Apache does not have support to do that. So that's where I discovered Nginx.
+Learning that I needed a reverse proxy lead me to discovering Nginx. As I went through this adventure to encrypt all the things, I started finding that just about every webserver in my network either did not support HTTPS or had a big disclaimer in the docs about how they don't recommend using their built-in HTTPS and they recommend using a reverse proxy instead. So I started implementing Nginx as a reverse proxy for these servers.
 
-Nginx has a learning curve and I found the config files difficult to understand. Luckily, there's so many tutorials on the internet that finding a working config to copy and paste is incredibly easy. Unfortunately, I'm struggling to understand *why* things work when they do. I have been struggling to get a working reverse proxy for my Kavita server. Some things aren't working and I haven't yet figured out why.
+My biggest complaint about Nginx is that the config files are hard to understand. On some part this is a good thing. Nginx's configs are hard to understand because it's so powerful. It has tons of features and can do so much. As I understand it, as well, it's very well hardened and incredibly reliable. Luckily, it's so widely used that there's tons of tutorials and examples on the internet. This makes it really easy to find a working example that can be easily copied and pasted. I just wish these examples came with more documentation on why or how they worked. All of my Nginx configs have quite a few lines that I don't know what they do, I just know it doesn't work if they're not there.
+
+This also created an issue whenever things went wrong. I am struggling right now with getting a reverse proxy to work with my ebook server, Kavita. For some reason, certain requests are going to the wrong port and without understanding the details of how the example config works, I am struggling to determine whether the issue is with the Nginx or Kavita. It also might be an issue with my web browser.
 
 ## Caddy
 
-When Caddy popped up in my research for this project, it really caught my eye. Caddy claims to do basically everything I'm trying to do. It also claims to do a lot of it automatically and with a very simple configuration. I mentioned in my last post about how frustrating it has been to deal with self-signed certs. Since there isn't a trusted certificate authority in my local network, all of the devices I use to connect to these servers complain. Some of them outright refuse. That's where Caddy comes in.
+When Caddy popped up in my research for this project, it really caught my eye. Not only does Caddy claim to do basically everything I'm trying to do. It also claims to do a lot of it automatically and with a very simple configuration. I mentioned in my last post about how frustrating it has been to deal with self-signed certs. Since there isn't a trusted certificate authority in my local network, all of the devices I use to connect to these servers complain. Some of them outright refuse. That's where Caddy comes in.
 
 Something that makes Caddy really fun is that it generates self-signed certs automatically. I don't have to fiddle with extremely long `openssl` commands. It will also autorenew the certs which means I don't have to remember to do that myself. The thing that stands out the most for me, is that it generates a root cert. This means that I can tell all my devices to trust Caddy's root cert and that device will not trust all the certs served by this Caddy server. That solves most of my problems right there.
 
@@ -40,6 +44,6 @@ Honestly, I should be using a firewall anyway, so maybe that limitation isn't to
 
 ## Conclusion
 
-Apache is perfect for a specific use-case. You have a static webpage that you want to server, and you want the setup to be quick and easy. Nginx is complicated and difficult to understand, but it offers the ability to create a reverse proxy. Caddy is super easy to get started and very powerful when it comes to implementing HTTPS for static pages or reverse proxies, but it has some limitations with docker networks.
+Apache is perfect for a specific use-case. You have a static webpage that you want to server, and you want the setup to be quick and easy. Nginx is complicated and difficult to understand, but there are so many exmaples on the internet that you don't necessarily have to understand it to use it. Caddy is super easy to get started and very powerful when it comes to implementing HTTPS for static pages or reverse proxies, but it has some limitations with docker networks.
 
 As of the time of writing this post, I'm mainly using Nginx for my servers, but I plan to continue poking around with Caddy to see if I can find a workaround. I realized as I was writing this that there may to specificy a static IP for each docker container, and doing so would eliminate the need for Caddy to use docker's DNS.
