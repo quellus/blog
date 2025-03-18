@@ -1,0 +1,52 @@
+---
+layout: post
+title: "Coding Tic-Tac-Toe is harder than you might think"
+subtitle: "Adventures in Brushing up on C++ knowledge by coding a simple tic tac toe bot"
+tags: Blog, knowledgedump, coding, softwareengineer, gamedevelopment, ai
+---
+
+## Introduction
+
+I am currently looking for a software engineer position and my priority is to look for one that primarily focuses on the language C++. I have a good amount of experience with it, I like the syntax, and dealing with thing like memory management and asking questions about what things are more/less efficient at compilation/run time feels like a puzzle to solve more than I've experienced with any other language.
+
+An issue I'm going to face in my job search is that it's been a little while since I last worked with C++. I have a lot of experience and I have deep knowledge, but it will take some reviewing to be able to demonstrate that knowledge in a technical interview. I decided to brush up on my C++ knowledge by coding a little tic-tac-toe game and attempting to make bot players of various difficulty.
+
+## The path I expected to take
+
+Going into this, I thought it would be easy. Tic-Tac-Toe is a "solved game", so coding the solution should be easy. Right? Right??? I genuinely expected the process to go like this:
+1. Spend a day writing a little tic-tac-toe game
+2. Create an bot that just chooses a random move every time so I have a bot to test the game with
+3. Google "tic-tac-toe best strategy"
+4. Find an analysis of the best strategies for tic-tac-toe that basically equate to pseudo code
+5. Code it.
+
+Well it turned out to be quite a lot more difficult than that. I made the simple tic-tac-toe game, created a bot opponent that will only play a random move, then started researching strategies. So that's where this story starts.
+
+## The only bot that's easy to code is one that has an equally perfect opponent
+
+I pretty quickly found what I was looking for. Everywhere online, you can find pretty simple strategies that can easily be read as pseudo code. Exactly what I was looking for. There's just one problem. The pseudo code strategies only really work if both strategies are playing a "perfect" game. In other words, the only strategies that simplify the game enough to create something that can be programmed easily with some if/else statements require that both players of the game are playing the *perfect* move every move. So I *could* code the strategies I found, but really I would just be making two bots that play against eachother and all the player/user can do is just watch them play the same perfect game every time. If one player has flaws, things get a lot more complicated.
+
+My goal was to make a bot that can play against a human. If the game isn't "perfect" and the players could make *any* legal move, there are over 26,000 possibilites to consider.
+
+## XKCD to the rescue (almost)
+
+Somehow XKCD has a comic for everything, and this situation was no exception. [This XKCD](https://xkcd.com/832/) shows the best moves you can make against an opponent who can make any possible move. This greatly simplifies things. Instead of having to consider the best move from *any* possible position, we now only need to consider the positions that can happen as a result of the bot making the best move each time. It's still quite a lot of possibilities, but much more approachable than 26,000 possibilities.
+
+I spent a lot of time looking through these moves searching for patterns that stood out to me. Something that stood out to me quickly is that the whenever the middle position was available, the graphic prioritize it. So that was the first rule I wrote down. When possible, play center. The next pattern that stood out to me is noticing whenever the next move can be a winning move. The bot will need to recognize all the patterns where it can play a winning move, and it can block the player from making a winning move. Then came the most complicated part. In order for a bot to be really good at this game, it would need to recognize all the possible ways the opponent can force a win, and all the ways it can force a win.
+
+What I mean by this is putting the opponent in a situation where you have 2 possible winning moves. This means that no matter which one the opponent blocks, you still have a winning move available. The bot needs to recognize when the opponent can put them in that position, and block them before it happens as well as recognize when and how it can force those situations.
+
+Deeper I looked into this, the more it appears that I might as well just hardcode every possible board state, and the best move associated with it, but that wouldn't really be fun to code. The result would be a whole lot of code that's difficult to write, even more difficult to read, and impossible to change if for some reason we decide to change it later. This isn't the project I signed up for. I'm doing this for fun and learning!
+
+## Machine learning and AI
+
+It's 2025 and AI feels inescapable right now. Any time you look up how to do anything, the answer just always seems to be AI. This time, however, AI actually is the answer. In college, I learned about reinforcement learning in an AI class. The method, specifically, was called Q-learning. This was something I thought of pretty quickly when I started to realize the XKCD comic wasn't the solution I was looking for. If I'm going to hardcode that many possible states and associated moves, it would probably take less time/work to just code a Q-learning algorithm where the algorithm develops a list of every state the game has been and every move its witnessed accompanied by how good that move has been in the bot's experience.
+
+In the AI class, where I learned about this, I also learned that this algorithm can get very inefficient if you're not careful. This takes us back to this number. If there's 26,000 possible legal states, we will eventually store all of them and have to search through them. Probably not too crazy for a modern computer, but there's a better way.
+
+## Minmax
+
+It seems that the internet unanimously agrees that an algorithm called minmax is the best way to code a tic-tac-toe bot. I kept stumbling on it in reddit posts and various blogs and it appears most people who have posted a tic-tac-toe games on GitHub also used this same algorithm. So that's where I am now. I coded a pretty basic bot that can recognize how to block the opponent from winning, and when it can make a winning move, but otherwise just plays random moves.
+
+My next goal is to start researching Minmax and figure out how to program it. So far, the biggest question I haven't found an answer to is whether or not the algorithm *learns* and if so, how it learns.
+
