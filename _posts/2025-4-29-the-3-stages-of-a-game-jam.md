@@ -2,7 +2,7 @@
 layout: post
 title: "The 3 stages of a Game Jam"
 subtitle: "Things I learned about workflow and efficiency during Godot Wild Jam #80"
-tags: [Godot, Godot4, Ballistics]
+tags: [Godot, Godot4, Game Jam, Game Development, Learning]
 ---
 
 ## Introduction
